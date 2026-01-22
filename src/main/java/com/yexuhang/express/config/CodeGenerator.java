@@ -10,10 +10,10 @@ import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
  */
 public class CodeGenerator {
     public static void main(String[] args) {
-        generator("express_locker","users");
+        generator("express_locker","express_orders", "send_express_orders", "storage_orders");
     }
     public static void generator(String databaseName,String... tableName){
-        FastAutoGenerator.create("jdbc:mysql://localhost:3306/"+databaseName+"?&useSSL=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai","ecs-user","Yexuhang2004#")
+        FastAutoGenerator.create("jdbc:mysql://localhost:3306/"+databaseName+"?&useSSL=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai","root","Yexuhang2004#")
                 .globalConfig(builder -> {
                     builder.author("Xuhang Ye")//设置作者
                             .outputDir(System.getProperty("user.dir")+"/src/main/java");
