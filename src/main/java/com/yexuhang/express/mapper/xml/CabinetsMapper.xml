@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yexuhang.express.mapper.CabinetsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yexuhang.express.bean.Cabinets">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="location" property="location" />
+        <result column="address_detail" property="addressDetail" />
+        <result column="latitude" property="latitude" />
+        <result column="longitude" property="longitude" />
+        <result column="status" property="status" />
+        <result column="total_doors" property="totalDoors" />
+        <result column="available_doors" property="availableDoors" />
+        <result column="power_status" property="powerStatus" />
+        <result column="network_status" property="networkStatus" />
+        <result column="last_heartbeat" property="lastHeartbeat" />
+        <result column="created_at" property="createdAt" />
+        <result column="updated_at" property="updatedAt" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, location, address_detail, latitude, longitude, status, total_doors, available_doors, power_status, network_status, last_heartbeat, created_at, updated_at
+    </sql>
+
+</mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yexuhang.express.mapper.CabinetDoorsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yexuhang.express.bean.CabinetDoors">
+        <id column="id" property="id" />
+        <result column="cabinet_id" property="cabinetId" />
+        <result column="door_number" property="doorNumber" />
+        <result column="size_type" property="sizeType" />
+        <result column="status" property="status" />
+        <result column="lock_status" property="lockStatus" />
+        <result column="has_package" property="hasPackage" />
+        <result column="temperature" property="temperature" />
+        <result column="humidity" property="humidity" />
+        <result column="pressure_value" property="pressureValue" />
+        <result column="last_open_time" property="lastOpenTime" />
+        <result column="last_close_time" property="lastCloseTime" />
+        <result column="created_at" property="createdAt" />
+        <result column="updated_at" property="updatedAt" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, cabinet_id, door_number, size_type, status, lock_status, has_package, temperature, humidity, pressure_value, last_open_time, last_close_time, created_at, updated_at
+    </sql>
+
+</mapper>

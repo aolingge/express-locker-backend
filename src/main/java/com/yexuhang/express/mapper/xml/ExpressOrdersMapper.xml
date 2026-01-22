@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yexuhang.express.mapper.ExpressOrdersMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yexuhang.express.bean.ExpressOrders">
+        <id column="id" property="id" />
+        <result column="tracking_number" property="trackingNumber" />
+        <result column="courier_id" property="courierId" />
+        <result column="sender_name" property="senderName" />
+        <result column="sender_phone" property="senderPhone" />
+        <result column="receiver_name" property="receiverName" />
+        <result column="receiver_phone" property="receiverPhone" />
+        <result column="cabinet_id" property="cabinetId" />
+        <result column="door_id" property="doorId" />
+        <result column="pick_code" property="pickCode" />
+        <result column="status" property="status" />
+        <result column="store_time" property="storeTime" />
+        <result column="pick_time" property="pickTime" />
+        <result column="expire_time" property="expireTime" />
+        <result column="size_type" property="sizeType" />
+        <result column="notes" property="notes" />
+        <result column="created_at" property="createdAt" />
+        <result column="updated_at" property="updatedAt" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, tracking_number, courier_id, sender_name, sender_phone, receiver_name, receiver_phone, cabinet_id, door_id, pick_code, status, store_time, pick_time, expire_time, size_type, notes, created_at, updated_at
+    </sql>
+
+</mapper>
