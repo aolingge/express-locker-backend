@@ -42,6 +42,7 @@ public class SendExpressOrdersServiceImpl extends ServiceImpl<SendExpressOrdersM
         newOrder.setEstimatedCost(sendOrderDTO.getEstimatedCost());
         newOrder.setNotes(sendOrderDTO.getNotes());
         newOrder.setCourierId(sendOrderDTO.getCourierId());
+        newOrder.setStoreTime(java.time.LocalDateTime.now());
         newOrder.setStatus("PENDING");
 
         // 生成唯一的随机六位寄件码
@@ -63,6 +64,34 @@ public class SendExpressOrdersServiceImpl extends ServiceImpl<SendExpressOrdersM
         queryWrapper.eq("courier_id", courierId);
         List<SendExpressOrders> orders = sendExpressOrdersMapper.selectList(queryWrapper);
         return CommonResult.success(orders);
+    }
+
+    @Override
+    public CommonResult<?> pickExpress(String sendCode) {
+        QueryWrapper<SendExpressOrders> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("send_code", sendCode);
+        SendExpressOrders order = sendExpressOrdersMapper.selectOne(queryWrapper);
+        if (order == null) {
+            return CommonResult.error("无效的寄件码");
+        }
+        if ("PICKED".equals(order.getStatus())) {
+            return CommonResult.error("该快递已被取件");
+        }
+
+
+        order.setStatus("PICKED");
+        order.setPickTime(java.time.LocalDateTime.now());
+
+        // 生成唯一trackingNumber （CQU + 随机九位数）
+        String trackingNumber = "CQU" + (100000000 + (int)(Math.random() * 900000000));
+        order.setTrackingNumber(trackingNumber);
+
+        int result = sendExpressOrdersMapper.updateById(order);
+        if (result > 0) {
+            return CommonResult.success("快递取件成功");
+        } else {
+            return CommonResult.error("快递取件失败, 请稍后再试");
+        }
     }
 
 }

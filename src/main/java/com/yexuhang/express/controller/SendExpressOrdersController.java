@@ -34,4 +34,10 @@ public class SendExpressOrdersController {
         log.info("Fetching orders for courierId: {}", courierId);
         return sendExpressOrdersService.getOrdersByCourierId(courierId);
     }
+
+    @PostMapping("/pickExpress")
+    public CommonResult<?> pickExpress(@RequestParam String sendCode) {
+        log.info("Picking express with sendCode: {}", sendCode);
+        return sendExpressOrdersService.pickExpress(sendCode);
+    }
 }

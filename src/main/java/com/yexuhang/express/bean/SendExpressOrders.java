@@ -126,4 +126,6 @@ public class SendExpressOrders implements Serializable {
      * 更新时间
      */
     private LocalDateTime updatedAt;
+
+    private String trackingNumber;
 }

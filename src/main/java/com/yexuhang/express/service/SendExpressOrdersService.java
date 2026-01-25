@@ -18,4 +18,5 @@ import java.util.List;
 public interface SendExpressOrdersService extends IService<SendExpressOrders> {
     CommonResult<?> sendExpress(SendOrderDTO sendOrderDTO);
     CommonResult<List<SendExpressOrders>> getOrdersByCourierId(Long courierId);
+    CommonResult<?> pickExpress(String sendCode);
 }
