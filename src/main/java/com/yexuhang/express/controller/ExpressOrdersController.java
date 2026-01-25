@@ -2,6 +2,7 @@ package com.yexuhang.express.controller;
 
 import com.yexuhang.express.bean.ExpressOrders;
 import com.yexuhang.express.config.CommonResult;
+import com.yexuhang.express.dto.CourierStoreDTO;
 import com.yexuhang.express.service.ExpressOrdersService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +42,11 @@ public class ExpressOrdersController {
     public CommonResult<?> pickExpressOrderByPickCode(String pickCode) {
         log.info("Picking express order with pickCode: {}", pickCode);
         return expressOrdersService.pickExpressOrderByPickCode(pickCode);
+    }
+
+    @PostMapping("/addExpressOrder")
+    public CommonResult<?> addExpressOrder(@RequestBody CourierStoreDTO courierStoreDTO) {
+        log.info("Adding new express order: {}", courierStoreDTO);
+        return expressOrdersService.addExpressOrder(courierStoreDTO);
     }
 }
