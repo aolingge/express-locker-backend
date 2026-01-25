@@ -1,7 +1,11 @@
 package com.yexuhang.express.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.yexuhang.express.config.CommonResult;
+import com.yexuhang.express.dto.StoreOrderDTO;
+import com.yexuhang.express.service.StorageOrdersService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -12,7 +16,16 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2026-01-22
  */
 @RestController
+@Slf4j
 @RequestMapping("/storageOrders")
+@CrossOrigin(origins = "*")
 public class StorageOrdersController {
+    @Autowired
+    private StorageOrdersService storageOrdersService;
 
+    @PostMapping("/storeExpress")
+    public CommonResult<?> storeExpressOrders(@RequestBody StoreOrderDTO storeOrderDTO) {
+        log.info("Received store express order: {}", storeOrderDTO);
+        return storageOrdersService.storeExpress(storeOrderDTO);
+    }
 }

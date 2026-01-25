@@ -22,10 +22,4 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ExpressOrdersServiceImpl extends ServiceImpl<ExpressOrdersMapper, ExpressOrders> implements ExpressOrdersService {
     @Autowired
     private ExpressOrdersMapper expressOrdersMapper;
-
-    @Override
-    // 创建存件订单
-    public CommonResult<?> courierStore(CourierStoreDTO courierStoreDTO) {
-
-    }
 }

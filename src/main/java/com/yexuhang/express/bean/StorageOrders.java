@@ -29,7 +29,7 @@ public class StorageOrders implements Serializable {
      * 寄存订单ID
      */
     @TableId(value = "id", type = IdType.AUTO)
-    private String id;
+    private Long id;
 
     /**
      * 寄存用户ID
