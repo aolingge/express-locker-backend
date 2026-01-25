@@ -1,5 +1,7 @@
 package com.yexuhang.express.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.yexuhang.express.bean.ExpressOrders;
 import com.yexuhang.express.bean.StorageOrders;
 import com.yexuhang.express.config.CommonResult;
 import com.yexuhang.express.dto.StoreOrderDTO;
@@ -46,6 +48,23 @@ public class StorageOrdersServiceImpl extends ServiceImpl<StorageOrdersMapper, S
             return CommonResult.success("寄存订单创建成功, 存件码为: " + pickCode);
         } else {
             return CommonResult.error("寄存订单创建失败, 请稍后再试");
+        }
+    }
+
+    public CommonResult<?> pickExpress(String pickCode) {
+        StorageOrders updateState = new StorageOrders();
+        updateState.setStatus("PICKED")
+                .setPickTime(java.time.LocalDateTime.now());
+
+        UpdateWrapper<StorageOrders> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.eq("pick_code", pickCode)
+                .eq("status", "STORED");
+
+        int rowsAffected = storageOrdersMapper.update(updateState, updateWrapper);
+        if (rowsAffected > 0) {
+            return CommonResult.success("寄存订单已取件");
+        } else {
+            return CommonResult.error("未找到对应的寄存订单或订单已被取件");
         }
     }
 }

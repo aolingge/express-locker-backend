@@ -51,7 +51,14 @@ public class UsersController {
     public CommonResult<?> updatePassword(@RequestParam String username, @RequestParam String oldPassword,
                                          @RequestParam String newPassword1, @RequestParam String newPassword2) {
         log.info("Password update attempt for username: {}", username);
-        return usersService.updatePassword(username, oldPassword, newPassword1, newPassword2);}
+        return usersService.updatePassword(username, oldPassword, newPassword1, newPassword2);
+    }
 
-
+    // 实名认证接口
+    @PostMapping("/authenticate")
+    public CommonResult<?> authenticateUser(@RequestParam String username, @RequestParam String realName,
+                                           @RequestParam String idCard) {
+        log.info("Authentication attempt for username: {}", username);
+        return usersService.authenticateUser(username, realName, idCard);
+    }
 }

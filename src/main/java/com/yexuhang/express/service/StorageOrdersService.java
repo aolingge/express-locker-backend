@@ -15,4 +15,5 @@ import com.yexuhang.express.dto.StoreOrderDTO;
  */
 public interface StorageOrdersService extends IService<StorageOrders> {
     CommonResult<?> storeExpress(StoreOrderDTO storeOrderDTO);
+    CommonResult<?> pickExpress(String pickCode);
 }

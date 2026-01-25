@@ -93,4 +93,25 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
             return CommonResult.error("密码修改失败, 请稍后再试");
         }
     }
+
+    // 实名认证，添加真名与身份证号
+    public CommonResult<?> authenticateUser(String username, String realName, String idCard) {
+        QueryWrapper<Users> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("username", username);
+        Users existingUser = usersMapper.selectOne(queryWrapper);
+
+        if (existingUser == null) {
+            return CommonResult.error("用户不存在");
+        }
+
+        // 更新真实姓名和身份证号
+        existingUser.setRealName(realName);
+        existingUser.setIdCard(idCard);
+        int result = usersMapper.updateById(existingUser);
+        if (result > 0) {
+            return CommonResult.success("实名认证成功");
+        } else {
+            return CommonResult.error("实名认证失败, 请稍后再试");
+        }
+    }
 }

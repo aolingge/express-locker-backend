@@ -28,4 +28,10 @@ public class StorageOrdersController {
         log.info("Received store express order: {}", storeOrderDTO);
         return storageOrdersService.storeExpress(storeOrderDTO);
     }
+
+    @PostMapping("/pickExpress")
+    public CommonResult<?> pickExpressOrders(@RequestParam String pickCode) {
+        log.info("Received pick express order request with pickCode: {}", pickCode);
+        return storageOrdersService.pickExpress(pickCode);
+    }
 }
