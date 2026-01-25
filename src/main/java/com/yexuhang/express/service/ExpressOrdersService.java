@@ -2,7 +2,10 @@ package com.yexuhang.express.service;
 
 import com.yexuhang.express.bean.ExpressOrders;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.yexuhang.express.config.CommonResult;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @since 2026-01-22
  */
 public interface ExpressOrdersService extends IService<ExpressOrders> {
+    CommonResult<List<ExpressOrders>> getAllExpressOrders(String cabinetId, String receiverPhone);
+    CommonResult<?> pickAllExpressOrders(String cabinetId, String receiverPhone);
+    CommonResult<?> pickExpressOrderByPickCode(String pickCode);
 }
