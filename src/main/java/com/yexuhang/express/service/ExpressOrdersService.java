@@ -2,6 +2,7 @@ package com.yexuhang.express.service;
 
 import com.yexuhang.express.bean.ExpressOrders;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * <p>
@@ -12,5 +13,4 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2026-01-22
  */
 public interface ExpressOrdersService extends IService<ExpressOrders> {
-
 }

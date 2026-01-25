@@ -11,9 +11,9 @@ spring:
     username: root
     password: Yexuhang2004#
   redis:
-    host: 127.0.0.1 # Redis地址，本地为127.0.0.1
-    port: 6379 # Redis端口号，默认为6379
-    password: # Redis密码，没有请保持为空
+    host: 127.0.0.1
+    port: 6379
+    password:
     timeout: 60000
     lettuce:
       pool:

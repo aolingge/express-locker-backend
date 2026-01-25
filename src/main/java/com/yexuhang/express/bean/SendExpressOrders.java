@@ -30,7 +30,7 @@ public class SendExpressOrders implements Serializable {
      * 寄件订单ID
      */
     @TableId(value = "id", type = IdType.AUTO)
-    private String id;
+    private Long id;
 
     /**
      * 寄件用户ID

@@ -1,7 +1,11 @@
 package com.yexuhang.express.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.yexuhang.express.config.CommonResult;
+import com.yexuhang.express.dto.SendOrderDTO;
+import com.yexuhang.express.service.SendExpressOrdersService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -12,7 +16,22 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2026-01-22
  */
 @RestController
+@Slf4j
 @RequestMapping("/sendExpressOrders")
+@CrossOrigin(origins = "*")
 public class SendExpressOrdersController {
+    @Autowired
+    private SendExpressOrdersService sendExpressOrdersService;
 
+    @PostMapping("/sendExpress")
+    public CommonResult<?> sendExpress(@RequestBody SendOrderDTO sendOrderDTO) {
+        log.info("Received send express order: {}", sendOrderDTO);
+        return sendExpressOrdersService.sendExpress(sendOrderDTO);
+    }
+
+    @GetMapping("/{courierId}/orders")
+    public CommonResult<?> getOrdersByCourierId(@PathVariable Long courierId) {
+        log.info("Fetching orders for courierId: {}", courierId);
+        return sendExpressOrdersService.getOrdersByCourierId(courierId);
+    }
 }

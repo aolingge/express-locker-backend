@@ -1,7 +1,13 @@
 package com.yexuhang.express.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.yexuhang.express.bean.CabinetDoors;
+import com.yexuhang.express.config.CommonResult;
+import com.yexuhang.express.service.CabinetDoorsService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * <p>
@@ -12,7 +18,16 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2026-01-22
  */
 @RestController
+@Slf4j
 @RequestMapping("/cabinetDoors")
+@CrossOrigin(origins = "*")
 public class CabinetDoorsController {
+    @Autowired
+    private CabinetDoorsService cabinetDoorsService;
 
+    @GetMapping("/{cabinetId}/{sizeType}/availableDoors")
+    public CommonResult<List<CabinetDoors>> getAvailableDoorsBySizeAndCabinetId(@PathVariable String cabinetId, @PathVariable String sizeType) {
+        log.info("Fetching available doors for cabinetId: {}, sizeType: {}", cabinetId, sizeType);
+        return cabinetDoorsService.getAvailableDoorsBySizeAndCabinetId(sizeType, cabinetId);
+    }
 }
