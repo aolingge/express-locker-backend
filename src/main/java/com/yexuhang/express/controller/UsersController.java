@@ -61,4 +61,39 @@ public class UsersController {
         log.info("Authentication attempt for username: {}", username);
         return usersService.authenticateUser(username, realName, idCard);
     }
+
+    // 管理员登录接口
+    @PostMapping("/admin/login")
+    public CommonResult<?> adminLogin(@RequestParam String username, @RequestParam String password) {
+        log.info("Admin login attempt with username: {}", username);
+        return usersService.adminLogin(username, password);
+    }
+
+    // 获取所有普通用户接口
+    @GetMapping("/allNormalUsers")
+    public CommonResult<?> getAllNormalUsers() {
+        log.info("Fetching all normal users");
+        return usersService.getAllNormalUsers();
+    }
+
+    // 获取用户详情接口
+    @GetMapping("/details")
+    public CommonResult<?> getUserDetails(@RequestParam String username) {
+        log.info("Fetching details for username: {}", username);
+        return usersService.getUserDetails(username);
+    }
+
+    // 禁用与启用用户接口
+    @PostMapping("/setStatus")
+    public CommonResult<?> setUserStatus(@RequestParam String username) {
+        log.info("Setting status for username: {}", username);
+        return usersService.setUserStatus(username);
+    }
+
+    // 获取所有快递员接口
+    @GetMapping("/allCouriers")
+    public CommonResult<?> getAllCouriers() {
+        log.info("Fetching all couriers");
+        return usersService.getAllCouriers();
+    }
 }

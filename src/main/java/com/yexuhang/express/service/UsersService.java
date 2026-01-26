@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.yexuhang.express.config.CommonResult;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 /**
  * <p>
  * 用户表 服务类
@@ -18,4 +20,9 @@ public interface UsersService extends IService<Users> {
     CommonResult<?> register(String username, String password1, String password2, String phone);
     CommonResult<?> updatePassword(String username, String oldPassword, String newPassword1, String newPassword2);
     CommonResult<?> authenticateUser(String username, String realName, String idCard);
+    CommonResult<?> adminLogin(String username, String password);
+    CommonResult<List<Users>> getAllNormalUsers();
+    CommonResult<?> getUserDetails(String username);
+    CommonResult<?> setUserStatus(String username);
+    CommonResult<List<Users>> getAllCouriers();
 }
