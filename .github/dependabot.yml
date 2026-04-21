@@ -1,0 +1,14 @@
+version: 2
+updates:
+  - package-ecosystem: maven
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "04:20"
+    open-pull-requests-limit: 5
+    labels: ["dependencies", "java", "needs-human-review"]
+    cooldown:
+      semver-major-days: 14
+      semver-minor-days: 3
+      semver-patch-days: 0
