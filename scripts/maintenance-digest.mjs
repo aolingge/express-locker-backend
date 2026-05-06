@@ -70,16 +70,19 @@ async function findDigestIssue() {
   return issues.find((issue) => issue.title === digestTitle && !issue.pull_request);
 }
 
-const [pulls, issues, runs, dependabotAlerts, codeScanningAlerts] = await Promise.all([
+const repoDetails = await api(`/repos/${owner}/${repo}`);
+const issuesEnabled = repoDetails.has_issues;
+
+const [pulls, issuesResult, runs, dependabotAlerts, codeScanningAlerts] = await Promise.all([
   api(`/repos/${owner}/${repo}/pulls?state=open&per_page=100`),
-  api(`/repos/${owner}/${repo}/issues?state=open&per_page=100`),
+  issuesEnabled ? api(`/repos/${owner}/${repo}/issues?state=open&per_page=100`) : Promise.resolve([]),
   api(`/repos/${owner}/${repo}/actions/runs?per_page=100`),
   optionalApi(`/repos/${owner}/${repo}/dependabot/alerts?state=open&per_page=25`),
   optionalApi(`/repos/${owner}/${repo}/code-scanning/alerts?state=open&per_page=25`)
 ]);
 
 const stalePulls = pulls.filter((pull) => new Date(pull.updated_at) < twoDaysAgo);
-const openBugs = issues.filter((issue) => !issue.pull_request && issue.title !== digestTitle).filter((issue) =>
+const openBugs = issuesResult.filter((issue) => !issue.pull_request && issue.title !== digestTitle).filter((issue) =>
   issue.labels?.some((label) => ["bug", "security"].includes(label.name))
 );
 const failedRuns = runs.workflow_runs.filter((run) =>
@@ -91,7 +94,7 @@ const hasProblems = stalePulls.length > 0 || openBugs.length > 0 || failedRuns.l
   (dependabotAlerts.ok && dependabotAlerts.data.length > 0) ||
   (codeScanningAlerts.ok && codeScanningAlerts.data.length > 0);
 
-const existing = await findDigestIssue();
+const existing = issuesEnabled ? await findDigestIssue() : null;
 
 if (!hasProblems) {
   if (existing) {
@@ -101,6 +104,11 @@ if (!hasProblems) {
     });
   }
   console.log("No maintenance issues found.");
+  process.exit(0);
+}
+
+if (!issuesEnabled) {
+  console.log("Maintenance issues found, but repository Issues are disabled; skipping digest issue update.");
   process.exit(0);
 }
 
