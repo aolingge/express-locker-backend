@@ -3,10 +3,10 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.yexuhang</groupId>
-    <artifactId>express</artifactId>
+    <artifactId>express-locker-backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>express</name>
-    <description>express</description>
+    <name>express-locker-backend</name>
+    <description>Java / Spring Boot backend for an express locker logistics system.</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -14,6 +14,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <aliyun-spring-boot.version>1.0.0</aliyun-spring-boot.version>
         <spring-boot.version>2.6.13</spring-boot.version>
+        <lombok.version>1.18.36</lombok.version>
     </properties>
 
     <dependencies>
@@ -49,6 +50,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
             <optional>true</optional>
         </dependency>
         <dependency>

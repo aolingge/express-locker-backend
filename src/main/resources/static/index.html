@@ -1,6 +1,172 @@
-<html>
-    <body>
-        <h1>hello word!!!</h1>
-        <p>this is a html page</p>
-    </body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Express Locker Backend</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f4f7f4;
+        --ink: #10201e;
+        --muted: #51615e;
+        --line: rgba(16, 32, 30, 0.14);
+        --accent: #2f6f67;
+        --accent-2: #bd5539;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          radial-gradient(circle at top right, rgba(47, 111, 103, 0.08), transparent 34%),
+          radial-gradient(circle at bottom left, rgba(189, 85, 57, 0.1), transparent 30%),
+          var(--bg);
+        color: var(--ink);
+        font-family: Inter, Avenir, system-ui, sans-serif;
+      }
+
+      main {
+        width: min(1080px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 56px 0 40px;
+      }
+
+      .eyebrow {
+        margin: 0 0 14px;
+        color: var(--accent-2);
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2.8rem, 7vw, 5rem);
+        line-height: 0.95;
+      }
+
+      .lead {
+        max-width: 760px;
+        margin: 18px 0 0;
+        color: var(--muted);
+        font-size: 1.08rem;
+        line-height: 1.7;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+        margin-top: 34px;
+      }
+
+      .panel {
+        padding: 22px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: rgba(255, 250, 240, 0.75);
+      }
+
+      .panel h2 {
+        margin: 0 0 12px;
+        font-size: 1.1rem;
+      }
+
+      .panel p,
+      .panel li {
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      ul {
+        margin: 0;
+        padding-left: 18px;
+      }
+
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 24px;
+      }
+
+      .chip {
+        padding: 8px 12px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.5);
+        color: var(--ink);
+        font-weight: 700;
+      }
+
+      a {
+        color: var(--accent);
+      }
+
+      footer {
+        margin-top: 30px;
+        padding-top: 18px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+      }
+
+      @media (max-width: 760px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="eyebrow">Express Locker Backend</p>
+      <h1>Parcel locker backend for logistics practice.</h1>
+      <p class="lead">
+        This Spring Boot service models the core flows behind an express locker
+        system: users, cabinets, cabinet doors, storage orders, send orders,
+        pickup codes, and admin operations. It is meant as a readable backend
+        practice repo with clear API structure and verification paths.
+      </p>
+
+      <div class="meta" aria-label="Technology stack">
+        <span class="chip">Java 8</span>
+        <span class="chip">Spring Boot</span>
+        <span class="chip">MyBatis-Plus</span>
+        <span class="chip">MySQL</span>
+        <span class="chip">Redis</span>
+      </div>
+
+      <section class="grid" aria-label="Project overview">
+        <article class="panel">
+          <h2>What it covers</h2>
+          <ul>
+            <li>User login, registration, password updates, and verification.</li>
+            <li>Cabinet management and available door lookup.</li>
+            <li>Storage and send order flows with pickup codes.</li>
+            <li>Mapper-based data access backed by MySQL.</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <h2>Start here</h2>
+          <ul>
+            <li><a href="https://github.com/aolingge/express-locker-backend/blob/main/README.md">Read the repository README</a>.</li>
+            <li>Run <code>mvn test</code> to check the project.</li>
+            <li>Inspect <code>src/main/java/com/yexuhang/express</code> for controllers and services.</li>
+            <li>See <a href="https://github.com/aolingge/express-locker-backend/blob/main/.github/workflows/validate.yml">CI validation</a>.</li>
+          </ul>
+        </article>
+      </section>
+
+      <footer>
+        MIT licensed learning project maintained by Aolingge.
+      </footer>
+    </main>
+  </body>
 </html>
